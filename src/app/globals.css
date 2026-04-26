@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #ffffff;
+  --primary: #C59D5F;
+  --primary-light: #d4b27a;
+  --primary-dark: #a68240;
+  --secondary: #1A1A1A;
+  --secondary-light: #252525;
+  --muted: #9CA3AF;
+  --card-border: rgba(197, 157, 95, 0.3);
+  --card-glow: rgba(197, 157, 95, 0.15);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-muted: var(--muted);
+  --color-card-border: var(--card-border);
+  --color-card-glow: var(--card-glow);
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ── Base ────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Custom Scrollbar ────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-dark);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* ── Selection ───────────────────────────────── */
+::selection {
+  background: rgba(197, 157, 95, 0.3);
+  color: #fff;
+}
+
+/* ── Gold Glow Utility ───────────────────────── */
+.gold-glow {
+  box-shadow: 0 0 20px rgba(197, 157, 95, 0.15),
+              0 0 40px rgba(197, 157, 95, 0.08);
+}
+.gold-glow-strong {
+  box-shadow: 0 0 30px rgba(197, 157, 95, 0.25),
+              0 0 60px rgba(197, 157, 95, 0.12);
+}
+
+/* ── Terminal Cursor ─────────────────────────── */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+.terminal-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+/* ── Grid Background Pattern ─────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(197, 157, 95, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(197, 157, 95, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Gradient Overlays ───────────────────────── */
+.fade-top {
+  mask-image: linear-gradient(to bottom, transparent, black 30%);
+}
+.fade-bottom {
+  mask-image: linear-gradient(to top, transparent, black 30%);
+}
+
+/* ── Section Divider ─────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary-dark), transparent);
+  opacity: 0.4;
+}
+
+/* ── Focus styles ────────────────────────────── */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 2px rgba(197, 157, 95, 0.2);
+}
