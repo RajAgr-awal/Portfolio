@@ -1,12 +1,20 @@
 import type { NextConfig } from "next";
 
+const isGithubPages = process.env.GITHUB_PAGES === "true";
+
 const nextConfig: NextConfig = {
-  // Enable static export for GitHub Pages fallback,
-  // Remove this if deploying to Vercel (Vercel handles this automatically)
-  // output: "export",
+  // Static export for GitHub Pages, dynamic for Vercel
+  ...(isGithubPages && {
+    output: "export",
+    basePath: "/Portfolio",
+    assetPrefix: "/Portfolio/",
+  }),
 
   images: {
-    // Allow images from the repo itself and common CDNs
+    // GitHub Pages doesn't support Next.js image optimization
+    ...(isGithubPages && { unoptimized: true }),
+
+    // Allow images from common CDNs
     remotePatterns: [
       {
         protocol: "https",

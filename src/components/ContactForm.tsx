@@ -20,7 +20,8 @@ export default function ContactForm() {
     setErrorMsg("");
 
     try {
-      const response = await fetch("/api/contact", {
+      const apiBase = process.env.NEXT_PUBLIC_API_URL || "";
+      const response = await fetch(`${apiBase}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
