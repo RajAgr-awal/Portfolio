@@ -1,42 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Terminal, ExternalLink, FileText, PenTool, Lightbulb } from "lucide-react";
+import { Terminal, ExternalLink, Lightbulb, PenTool, FileText } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import SectionHeading from "./SectionHeading";
+import { BLOG_TOPICS, SOCIAL_LINKS } from "@/lib/data";
 
-const blogTopics = [
-  {
-    icon: Lightbulb,
-    title: "AI & Machine Learning Explorations",
-    description: "Deep dives into LLM integration, prompt engineering, and intelligent systems.",
-  },
-  {
-    icon: PenTool,
-    title: "Hardware Design Notes",
-    description: "Lessons from building simulation tools and working with electronics.",
-  },
-  {
-    icon: FileText,
-    title: "Dev Logs & Tutorials",
-    description: "Technical walkthroughs, project updates, and coding insights.",
-  },
-];
+const ICON_MAP: Record<string, LucideIcon> = {
+  Lightbulb, PenTool, FileText,
+};
 
 export default function BlogLab() {
   return (
     <section id="lab" className="relative py-24 md:py-32 px-6">
-      {/* Section divider */}
       <div className="section-divider max-w-5xl mx-auto mb-24" />
-
       <div className="max-w-5xl mx-auto">
         <SectionHeading
           title="THE_LAB"
           subtitle="Experiments, thoughts, and technical deep-dives. Where ideas get tested."
         />
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {blogTopics.map((topic, index) => {
-            const Icon = topic.icon;
+          {BLOG_TOPICS.map((topic, index) => {
+            const Icon = ICON_MAP[topic.iconName];
             return (
               <motion.div
                 key={topic.title}
@@ -75,23 +60,17 @@ export default function BlogLab() {
             <div className="w-3 h-3 rounded-full bg-green-500/80" />
             <span className="ml-2 text-xs font-mono text-muted">~/the-lab</span>
           </div>
-
           <div className="font-mono text-sm text-muted space-y-2">
-            <p>
-              <span className="text-primary">$</span> cat README.md
-            </p>
+            <p><span className="text-primary">$</span> cat README.md</p>
             <p className="text-foreground/80 pl-2">
               Welcome to The Lab — a collection of experiments, tutorials, and
               technical deep-dives from my journey in full-stack development,
               AI integration, and hardware simulation.
             </p>
-            <p className="mt-4">
-              <span className="text-primary">$</span> open blog
-            </p>
+            <p className="mt-4"><span className="text-primary">$</span> open blog</p>
           </div>
-
           <a
-            href="https://www.blogger.com/u/1/blog/posts/3759398930506238388"
+            href={SOCIAL_LINKS.blog}
             target="_blank"
             rel="noopener noreferrer"
             id="blog-link"

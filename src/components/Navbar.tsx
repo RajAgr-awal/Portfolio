@@ -3,14 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-
-const navLinks = [
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "The Lab", href: "#lab" },
-  { label: "Contact", href: "#contact" },
-];
+import { NAV_LINKS } from "@/lib/data";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,6 +29,8 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
+  const closeMobile = () => setMobileOpen(false);
+
   return (
     <>
       <nav
@@ -51,7 +46,7 @@ export default function Navbar() {
           <a
             href="#"
             className="flex items-center gap-2 group"
-            onClick={() => setMobileOpen(false)}
+            onClick={closeMobile}
           >
             <span className="font-mono text-lg font-semibold text-primary group-hover:text-primary-light transition-colors">
               {">"} RA
@@ -60,7 +55,7 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -101,7 +96,7 @@ export default function Navbar() {
               transition={{ duration: 0.3, delay: 0.1 }}
               className="flex flex-col items-center justify-center h-full gap-8"
             >
-              {navLinks.map((link, i) => (
+              {NAV_LINKS.map((link, i) => (
                 <motion.a
                   key={link.label}
                   href={link.href}
@@ -109,7 +104,7 @@ export default function Navbar() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.15 + i * 0.08 }}
                   className="font-mono text-2xl text-muted hover:text-primary transition-colors"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={closeMobile}
                 >
                   <span className="text-primary mr-2">$</span>
                   {link.label}

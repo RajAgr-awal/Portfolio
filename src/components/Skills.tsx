@@ -2,37 +2,17 @@
 
 import { motion } from "framer-motion";
 import { Code2, Palette, Presentation, Sparkles } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import SectionHeading from "./SectionHeading";
+import { SKILL_CATEGORIES, SKILL_PILLS } from "@/lib/data";
 
-const skillCategories = [
-  {
-    title: "Programming",
-    icon: Code2,
-    skills: [
-      { name: "C", level: 85 },
-      { name: "C++", level: 80 },
-      { name: "Vibecoding", level: 90 },
-    ],
-  },
-  {
-    title: "Design & Creative",
-    icon: Palette,
-    skills: [
-      { name: "Canva", level: 92 },
-      { name: "Presentations", level: 88 },
-      { name: "Templates", level: 85 },
-    ],
-  },
-];
-
-const allSkills = [
-  { name: "Vibecoding", icon: Sparkles },
-  { name: "C", icon: Code2 },
-  { name: "C++", icon: Code2 },
-  { name: "Canva", icon: Palette },
-  { name: "Presentations", icon: Presentation },
-  { name: "Templates", icon: Palette },
-];
+/** Map icon name strings from data to actual Lucide components */
+const ICON_MAP: Record<string, LucideIcon> = {
+  Code2,
+  Palette,
+  Presentation,
+  Sparkles,
+};
 
 export default function Skills() {
   return (
@@ -48,8 +28,8 @@ export default function Skills() {
 
         {/* Skill Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {skillCategories.map((category, catIndex) => {
-            const CatIcon = category.icon;
+          {SKILL_CATEGORIES.map((category, catIndex) => {
+            const CatIcon = ICON_MAP[category.iconName];
             return (
               <motion.div
                 key={category.title}
@@ -118,8 +98,8 @@ export default function Skills() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-10 flex flex-wrap gap-3 justify-center"
         >
-          {allSkills.map((skill, index) => {
-            const SkillIcon = skill.icon;
+          {SKILL_PILLS.map((skill, index) => {
+            const SkillIcon = ICON_MAP[skill.iconName];
             return (
               <motion.div
                 key={skill.name}

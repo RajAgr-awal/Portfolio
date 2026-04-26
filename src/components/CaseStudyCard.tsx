@@ -3,12 +3,13 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { defaultViewport } from "@/lib/animations";
 
 interface CaseStudyCardProps {
   title: string;
   subtitle: string;
   description: string;
-  tags: string[];
+  tags: readonly string[];
   image: string;
   href?: string;
   index: number;
@@ -27,7 +28,7 @@ export default function CaseStudyCard({
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={defaultViewport}
       transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
       className="group relative"
     >
@@ -43,6 +44,7 @@ export default function CaseStudyCard({
             src={image}
             alt={title}
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
           {/* Gradient overlay */}
